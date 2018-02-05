@@ -1,0 +1,57 @@
+version: '2'
+
+services:
+  elasticsearch:
+    image : nshou/elasticsearch-kibana
+    ports:
+      - 9200:9200
+      - 5601:5601
+    volumes:
+      - ./esdata:/usr/share/elasticsearch/data
+  # auth:
+  #   image: inshapardaz/auth
+  #   build:
+  #     context: ../Inshardaz.Identity/
+  #   environment:
+  #     - SERVICE_NAME=auth
+  #     - ASPNETCORE_ENVIRONMENT=docker
+  #   ports:
+  #     - 5002
+  #   links:
+  #     - sqlserver
+  # api:
+  #   image: inshapardaz/api
+  #   build:
+  #     context: ../api/
+  #   environment:
+  #     - SERVICE_NAME=api
+  #     - ASPNETCORE_ENVIRONMENT=docker
+  #   ports:
+  #     - 5000
+  #   links:
+  #     - sqlserver
+
+  # loadbalancer:
+  #   image: nginx
+  #   build:
+  #     context: ./nginx
+  #   depends_on:
+  #     - api
+  #   ports:
+  #     - "8080:80"
+
+  # consul:
+  #   image: consul
+  #   ports:
+  #     - "8300:8300"
+  #     - "8400:8400"
+  #     - "8500:8500"
+  #     - "8600:53/udp"
+
+  # registrator:
+  #   image: gliderlabs/registrator
+  #   depends_on:
+  #     - consul
+  #   command: -internal -resync 600 consul://consul:8500
+  #   volumes:
+  #     - "/var/run/docker.sock:/tmp/docker.sock"
