@@ -11,9 +11,9 @@ services:
   web:
     image: inshapardaz/web:dev
     ports:
-      - 8080:80
-    links:
-       - api
+      - 4200:80
+  #  links:
+  #     - api
   # auth:
   #   image: inshapardaz/auth
   #   build:
@@ -25,17 +25,17 @@ services:
   #     - 5002
   #   links:
   #     - sqlserver
-  api:
-     image: inshapardaz/api
-     build:
-       context: ../api/
-     environment:
-       - SERVICE_NAME=api
-       - ASPNETCORE_ENVIRONMENT=docker
-     ports:
-       - 5000:5000
-     links:
-       - elasticsearch
+  # api:
+  #    image: inshapardaz/api
+  #    build:
+  #      context: ../api/
+  #    environment:
+  #      - SERVICE_NAME=api
+  #      - ASPNETCORE_ENVIRONMENT=docker
+  #    ports:
+  #      - 5000:5000
+  #    links:
+  #      - elasticsearch
 
   # loadbalancer:
   #   image: nginx
